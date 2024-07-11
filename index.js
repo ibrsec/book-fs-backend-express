@@ -8,6 +8,16 @@ const PORT = process.env.PORT || 3000;
 const express = require('express');
 const app = express();
 app.use(cors());
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // Allow any origin
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Allow specific methods
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization'); // Allow specific headers
+    next();
+  });
+
+  
+
+  
 app.use(express.json());
 const {syncBook} = require('./app/models/bookModels.js');
 const sequelize = require('./app/config/db.js');
